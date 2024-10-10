@@ -45,3 +45,47 @@ npm run build
 ```
 yarn build
 ```
+
+## Данные и их типизация в приложении.
+### Интерфейс данных карточек на главной странице.
+
+```
+export interface IProduct {
+  id: string;
+  description?: string;
+  image: string;
+  title: string;
+  category: string;
+  price: number | null;
+}
+```
+
+### Модель списка карточек на странице
+
+```
+export interface IProductData {
+  total: number;
+  items: IProduct[];
+}
+```
+
+### Описание данных полей в форме оформления заказа
+
+```
+interface IOrder {
+    payment: string;
+    address: string; 
+    email: string; 
+    phoneNumber: string;
+
+}
+```
+
+### Модель списка карточек в корзине
+
+```
+export interface IOrderData {
+  total: number;
+  items: IProduct['id'][];
+}
+```

@@ -23,8 +23,3 @@ export interface IProductData {
   total: number;
   items: IProduct[];
 }
-
-export interface ILarekApi {
-  getProducts: () => Promise<IProduct[]>
-  
-}
