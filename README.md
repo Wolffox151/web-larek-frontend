@@ -60,24 +60,23 @@ export interface IProduct {
 }
 ```
 
+### Описание данных полей в форме оформления заказа
+
+```
+interface IOrder {
+  payment: string;
+  address: string; 
+  email: string; 
+  phoneNumber: string;
+}
+```
+
 ### Модель списка карточек на странице
 
 ```
 export interface IProductData {
   total: number;
   items: IProduct[];
-}
-```
-
-### Описание данных полей в форме оформления заказа
-
-```
-interface IOrder {
-    payment: string;
-    address: string; 
-    email: string; 
-    phoneNumber: string;
-
 }
 ```
 
