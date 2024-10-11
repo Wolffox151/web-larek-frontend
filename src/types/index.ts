@@ -17,9 +17,14 @@ export interface IOrder {
 export interface ICartData {
   total: number;
   items: IProduct['id'][];
+  addProduct(product: IProduct['id']): void;
 }
 
 export interface IProductData {
   total: number;
   items: IProduct[];
 }
+
+export type TProductBaseInfo = Pick<IProduct, 'title' | 'category' | 'image' | 'price'>
+export type TProductInfo = Pick<IProduct, 'title'  | 'description' | 'category' | 'image' | 'price'>
+
