@@ -10,21 +10,21 @@ export interface IProduct {
 export interface IOrderPayment {
   payment?: string;
   address?: string;
-  checkValidate(inputs: Record<keyof TCartOrderUserPaymentAdress, string>):boolean;
+  checkValidatePayment(inputs: Record<keyof TCartOrderUserPaymentAdress, string>):boolean;
 }
 
 export interface IOrderContacts {
   email?: string;
   phone?: string;
-  checkValidate(inputs: Record<keyof TCartOrderUserContacts, string>): boolean;
+  checkValidateContacts(inputs: Record<keyof TCartOrderUserContacts, string>): boolean;
 }
 
 export interface IOrderData {
   total: number;
-  items: Pick<IProduct, 'id' | 'title' | 'price'>[];
-  addProduct(product: Pick<IProduct, 'id' | 'title' | 'price'>): void;
-  removeProduct(product: Pick<IProduct, 'id'>): void;
-  getCartData(items?: Pick<IProduct, 'id' | 'title' | 'price'>[]): Pick<IProduct, 'id' | 'title' | 'price'>[];
+  items: IProduct[];
+  addProduct(product: string): IProduct;
+  removeProduct(product: IProduct['id']): void;
+  getCartData(): IProduct[] | null;
 }
 
 export interface IProductData {
