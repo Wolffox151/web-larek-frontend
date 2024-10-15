@@ -127,14 +127,14 @@ export interface IOrderData {
 
 Так же класс предоставляет метод для взаимодействия с данными.
 - getProduct(productId: string): IProduct - возвращает карточку по ее айдишнику.
-- getProductList(): IProduct[]; - получает список товаров
-- getProductPreview(productId: string): TProductInfo; - превью карточки(модалка)
+- getProductList(): IProduct[] - получает список товаров
+- getProductPreview(product: IProduct): TProductInfo - превью карточки(модалка)
 
 #### Класс OrderData
 Класс отвечает за хранение данных карточек в корзине.
 - total: number - итоговая стоимость корзины.
-- items: Pick<IProduct, 'id' | 'title' | 'price'>[]; - список товаров: айди товара, название, цена.
+-  items: IProduct[] - список товаров
 Так же класс предоставляет метод для взаимодействия с данными.
-- addProduct(product: Pick<IProduct, 'id' | 'title' | 'price'>): void; - добавляет товар в корзину.
-- removeProduct(product: Pick<IProduct, 'id'>): void; - удаляет товар из корзины
-- getCartData(items?: Pick<IProduct, 'id' | 'title' | 'price'>[]): Pick<IProduct, 'id' | 'title' | 'price'>[]; - получает список товаров из корзины
+- addProduct(product: IProduct): void - добавляет товар в корзину.
+- removeProduct(product: IProduct['id']): void - удаляет товар из корзины
+- getCartData(): IProduct[] | null - получает список товаров из корзины
