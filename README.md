@@ -53,11 +53,17 @@ yarn build
 ```
 export interface IProduct {
   id: string;
-  description?: string;
   image: string;
   title: string; 
   category: string;
   price: number | null;
+}
+```
+### Интерфейс карточки товара более подробный(с описанием). Для модалки.
+
+```
+export interface IProductInfo extends IProduct {
+  description?: string;
 }
 ```
 

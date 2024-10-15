@@ -7,7 +7,7 @@ export interface IProduct {
 }
 
 export interface IProductInfo extends IProduct {
-  description: string;
+  description?: string;
 }
 
 export interface IOrderPayment {
