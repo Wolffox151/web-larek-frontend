@@ -23,11 +23,11 @@ export interface IOrderContacts {
 }
 
 export interface IOrderData {
-  total: number;
   items: IProduct[];
   addProduct(product: IProduct): void;
   removeProduct(product: IProduct['id']): void;
   getCartData(): IProduct[] | null;
+  calcTotalPrice(): number;
 }
 
 export interface IProductData {
@@ -35,7 +35,7 @@ export interface IProductData {
   preview: string | null;
   getProduct(productId: string): IProduct;
   getProductList(): IProduct[];
-  getProductPreview(product: IProductInfo): TProductInfo;
+  getProductPreview(): TProductInfo;
 }
 
 export type TProductBaseInfo = Pick<IProduct, 'title' | 'category' | 'image' | 'price'>;

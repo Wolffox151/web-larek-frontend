@@ -87,7 +87,6 @@ export interface IOrderContacts {
 
 ```
 export interface IProductData {
-  total: number;
   items: IProduct[];
 }
 ```
