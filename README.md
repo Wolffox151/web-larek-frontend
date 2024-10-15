@@ -64,11 +64,16 @@ export interface IProduct {
 ### Описание данных полей в форме оформления заказа
 
 ```
-interface IOrder {
-  payment: string;
-  address: string; 
-  email: string; 
-  phoneNumber: string;
+interface IOrderPayment {
+  payment?: string;
+  address?: string;
+}
+```
+
+```
+export interface IOrderContacts {
+  email?: string;
+  phone?: string;
 }
 ```
 
@@ -117,19 +122,19 @@ export interface IOrderData {
 Класс отвечает за хранение и логику работы с данными карточек товара. \
 Конструктор класса принимает инстант брокера событий\
 В полях класса хранятся следующие данные:
-- total: number - Кол-во товаров
 - items: IProduct[] - массив, содержащий в себе карточки.
 - preview: string | null - id карточки, выбранной для просмотра в модальном окне.
 
 Так же класс предоставляет метод для взаимодействия с данными.
+- getProduct(productId: string): IProduct - возвращает карточку по ее айдишнику.
+- getProductList(): IProduct[]; - получает список товаров
+- getProductPreview(productId: string): TProductInfo; - превью карточки(модалка)
 
--getProduct(productId: string): IProduct - возвращает карточку по ее айдишнику.
-
-#### Класс CartData
+#### Класс OrderData
 Класс отвечает за хранение данных карточек в корзине.
-- total: number - кол-во товаров в списке.
-- items: IProduct[['id]] - список айдишников товаров.
-
+- total: number - итоговая стоимость корзины.
+- items: Pick<IProduct, 'id' | 'title' | 'price'>[]; - список товаров: айди товара, название, цена.
 Так же класс предоставляет метод для взаимодействия с данными.
-- addProduct(product: IProduct['id']): void; - добавляет товар в корзину. То есть добавляется id товара в конец массива items.
-- removeProduct(product: IProduct['id']): void; - удаляет товар из корзины. То есть удаляется последний id товара из массива items.
+- addProduct(product: Pick<IProduct, 'id' | 'title' | 'price'>): void; - добавляет товар в корзину.
+- removeProduct(product: Pick<IProduct, 'id'>): void; - удаляет товар из корзины
+- getCartData(items?: Pick<IProduct, 'id' | 'title' | 'price'>[]): Pick<IProduct, 'id' | 'title' | 'price'>[]; - получает список товаров из корзины
