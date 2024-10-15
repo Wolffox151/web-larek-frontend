@@ -1,16 +1,19 @@
 export interface IProduct {
   id: string;
-  description?: string;
   image: string;
   title: string;
   category: string;
   price: number | null;
 }
 
+export interface IProductInfo extends IProduct {
+  description: string;
+}
+
 export interface IOrderPayment {
   payment?: string;
   address?: string;
-  checkValidatePayment(inputs: Record<keyof TCartOrderUserPaymentAdress, string>):boolean;
+  checkValidatePayment(inputs: Record<keyof TCartOrderUserPaymentAddress, string>): boolean;
 }
 
 export interface IOrderContacts {
@@ -32,14 +35,14 @@ export interface IProductData {
   preview: string | null;
   getProduct(productId: string): IProduct;
   getProductList(): IProduct[];
-  getProductPreview(product: IProduct): TProductInfo;
+  getProductPreview(product: IProductInfo): TProductInfo;
 }
 
 export type TProductBaseInfo = Pick<IProduct, 'title' | 'category' | 'image' | 'price'>;
-export type TProductInfo = Pick<IProduct, 'title'  | 'description' | 'category' | 'image' | 'price'>;
+export type TProductInfo = IProductInfo;
 
 export type TCartOrderProducts = Pick<IOrderData, 'total' | 'items'>;
-export type TCartOrderUserPaymentAdress = Pick<IOrderPayment, 'payment' | 'address'>;
+export type TCartOrderUserPaymentAddress = Pick<IOrderPayment, 'payment' | 'address'>;
 export type TCartOrderUserContacts = Pick<IOrderContacts, 'email' | 'phone'>;
 export type TCartOrderSuccess = Pick<IOrderData, 'total'>;
 
