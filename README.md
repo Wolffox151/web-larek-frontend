@@ -87,7 +87,6 @@ export interface IOrderContacts {
 
 ```
 export interface IProductData {
-  total: number;
   items: IProduct[];
 }
 ```
@@ -96,8 +95,7 @@ export interface IProductData {
 
 ```
 export interface IOrderData {
-  total: number;
-  items: IProduct['id'][];
+  items: IProduct[];
 }
 ```
 
@@ -138,9 +136,11 @@ export interface IOrderData {
 
 #### Класс OrderData
 Класс отвечает за хранение данных карточек в корзине.
-- total: number - итоговая стоимость корзины.
 -  items: IProduct[] - список товаров
 Так же класс предоставляет метод для взаимодействия с данными.
 - addProduct(product: IProduct): void - добавляет товар в корзину.
 - removeProduct(product: IProduct['id']): void - удаляет товар из корзины
 - getCartData(): IProduct[] | null - получает список товаров из корзины
+- getTotalPrice(orderItems: IProduct[]): number | null; - получает стоимость корзины
+- getTotalLength(orderItems: IProduct[]): number | null; - получает кол-во товаров
+- checkProductinCart(orderItems: IProduct[], product: IProduct): boolean; - проверяяет наличие товара в корзине

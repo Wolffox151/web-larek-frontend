@@ -23,11 +23,13 @@ export interface IOrderContacts {
 }
 
 export interface IOrderData {
-  total: number;
   items: IProduct[];
   addProduct(product: IProduct): void;
-  removeProduct(product: IProduct['id']): void;
+  removeProduct(product: IProduct): void;
   getCartData(): IProduct[] | null;
+  getTotalPrice(orderItems: IProduct[]): number | null;
+  getTotalLength(orderItems: IProduct[]): number | null;
+  checkProductinCart(orderItems: IProduct[], product: IProduct): boolean;
 }
 
 export interface IProductData {
@@ -41,10 +43,10 @@ export interface IProductData {
 export type TProductBaseInfo = Pick<IProduct, 'title' | 'category' | 'image' | 'price'>;
 export type TProductInfo = IProductInfo;
 
-export type TCartOrderProducts = Pick<IOrderData, 'total' | 'items'>;
+export type TCartOrderProducts = Pick<IOrderData, 'items'>;
 export type TCartOrderUserPaymentAddress = Pick<IOrderPayment, 'payment' | 'address'>;
 export type TCartOrderUserContacts = Pick<IOrderContacts, 'email' | 'phone'>;
-export type TCartOrderSuccess = Pick<IOrderData, 'total'>;
+export type TCartOrderSuccess = number;
 
 
 
