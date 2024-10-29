@@ -59,13 +59,6 @@ export interface IProduct {
   price: number | null;
 }
 ```
-### Интерфейс карточки товара более подробный(с описанием). Для модалки.
-
-```
-export interface IProductInfo extends IProduct {
-  description?: string;
-}
-```
 
 ### Описание данных полей в форме оформления заказа
 

@@ -1,13 +1,10 @@
 export interface IProduct {
   id: string;
   image: string;
+  description: string;
   title: string;
   category: string;
   price: number | null;
-}
-
-export interface IProductInfo extends IProduct {
-  description?: string;
 }
 
 export interface IOrderPayment {
