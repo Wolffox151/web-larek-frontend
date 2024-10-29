@@ -34,11 +34,11 @@ export interface IProductData {
   preview: string | null;
   getProduct(productId: string): IProduct;
   getProductList(): IProduct[];
-  getProductPreview(product: IProductInfo): TProductInfo;
+  getProductPreview(product: IProduct): string;
 }
 
 export type TProductBaseInfo = Pick<IProduct, 'title' | 'category' | 'image' | 'price'>;
-export type TProductInfo = IProductInfo;
+export type TProductInfo = IProduct;
 
 export type TCartOrderProducts = Pick<IOrderData, 'items'>;
 export type TCartOrderUserPaymentAddress = Pick<IOrderPayment, 'payment' | 'address'>;
