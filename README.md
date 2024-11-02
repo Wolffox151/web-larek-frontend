@@ -137,3 +137,54 @@ export interface IOrderData {
 - getTotalPrice(orderItems: IProduct[]): number | null; - получает стоимость корзины
 - getTotalLength(orderItems: IProduct[]): number | null; - получает кол-во товаров
 - checkProductinCart(orderItems: IProduct[], product: IProduct): boolean; - проверяяет наличие товара в корзине
+
+### Классы представления
+Все классы представления отвечают за отображения внутри контейнера (DOM-элемента) передаваемых в них данных
+
+#### Класс Modal
+Реализует модальное окно. Есть методы `open` и `close` для управлением отображения модального окна. Устанавливает слушатели на клавиатуру, для закрытиия модального окна кнопкой Esc, на клик оверлей и кнопку-крестик для закрытия попапа.
+
+-cosntructor(selector: string, events: IEvents) Конструктор пниимает селектор по которому в разметке страницы будет идентифицировано модальное окно и экземляр класса `EventEmitter` для возможности инициации событий.
+
+Поля класса
+- modal: HTMLElement - элемент модального окна.
+- event: IEvents - брокер событий
+
+#### Класс ModalWithConfirm
+Расширяет класс Modal. Предназначен для реализации модального окна подтверждения. При открытии модального окна сохраняет полученный в параметрах обработчик, который передается для выполнений при сабмите формы\
+Поля класса:
+- submitButton: HTMLButtonElement - Кнопка подтверждения(В корзину)
+- _form: HTMLFormElement - элемент формы.
+- forName: string - значения атрибута name формы.
+- handleSubmit: Function - функция, на выполнение которой запрашивается подтверждение
+
+Методы:
+- setValid(isValid: boolean): void; - изменяет активность кнопки подтверждения
+- open(handleSubmit: Function): void; расширение родительского метода принимает обработчик, который передает при инициации события подтверждения
+- get form: HTMLElement - геттер для получения элемента формы
+
+#### Класс ModelWithCard
+Расширяет класс ModalWithConfig. Предназначен для реализации модального окна отображения карточки товара.\
+- caregory : HTMLElement
+- titleElement: HTMLElement
+- discriptionElement: HTMLElement
+- imageElement: HTMLImageElement
+- priceElement: HTMLElement
+
+Методы:
+- open(data: {category:string, title:string, description:string, image:string, price:string}): void - расширение родительского метода
+- close(): расширяет родительский метод, выполняя дополнительную очистку атрибутов модального окна
+
+#### Класс ModalWithForm
+Расширяет класс Modal. Предназначен для реализации модального окна с формой содержащей поля ввода. При сабмите инициирует события передавая в него объект с данными из полей ввода формы. При изменении данных в полях ввода инициирует событие изменения данных. Предоставляет методы для отображения ошибок и управления активностью кнопки сохранения.\
+Поля класса:
+- submitButton: HTMLButtonElement - Кнопка подтверждения
+- _form: HTMLFormElement - элемент формы
+- formName: string= значение атрибута name формы.
+- unput: NodeListOf<HTMLInputElement> - коллекция всех полей ввода формы
+- error: Record<string, HTMLElement> - объект хранящий все элементы для вывода ошибок под полями формы с привязкой к атрибуту name инпутов
+
+Методы:
+-setValid(isValid: boolean): void - изменяет активность кнопки подтверждения
+- getInputValues(): Record<string, string> - возвращает объект с данными из полей формы, где ключ - name инпута, значения - данные введение пользователем
+- setInputValues(data: Record<string, string>): void - принимает объект с данными для заполнения полей формы
